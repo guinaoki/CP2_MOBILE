@@ -1,43 +1,33 @@
-import React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
+import { getAuth, signOut } from "firebase/auth";
 
 const HomeScreen = ({ navigation }) => {
+  const auth = getAuth();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Mercado</Text>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Login"
-          onPress={() => navigation.navigate('Login')}
-        />
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title="Cadastro"
-          onPress={() => navigation.navigate('Cadastro')}
-        />
-      </View>
+      <Text>
+        Home
+      </Text>
+      <Button
+        title="Change Name"
+        onPress={() => navigation.navigate('Profile')}
+      />
+      <Button
+        title="Logout"
+        onPress={() => signOut(auth)}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: '#fdb',
     alignItems: 'center',
+    flex: 1,
   },
-  title: {
-    fontFamily: 'NomeDaFontePersonalizada',
-    fontSize: 24,
-    marginBottom: 20,
-  },
-  buttonContainer: {
-    width: '90px',
-    marginVertical: 10,
-  },
-});
+})
 
 export default HomeScreen;
